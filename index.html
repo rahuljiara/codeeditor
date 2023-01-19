@@ -134,7 +134,7 @@
             height: calc(100% - 60px);
         }
         }
-        @media screen and (max-width:150px){
+        @media screen and (max-width:150px) , (max-height:250px){
             body{
                 display: none;
             }
@@ -151,6 +151,14 @@
                 align-items: center;
                 text-align: center;
                 overflow: auto;
+            }
+        }
+
+        @media screen and (max-height:500px){
+            .lang-box,
+            .output-box {
+                height: 98vw;
+                margin: .5vh 1vw;
             }
         }
     </style>
