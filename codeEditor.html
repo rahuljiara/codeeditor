@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Code Editor - CodeWord</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden    ;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .lang-box,
+        .output-box {
+            height: 49vh;
+            width: 49vw;
+            margin: .5vh .5vw;
+            background-color: rgb(24, 24, 24);
+            border-radius: 5px;
+            overflow-y: auto;
+        }
+
+        .output-box {
+            background: grey;
+        }
+
+        .lang-box-title,
+        .output-box-title {
+            height: 30px;
+            width: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-box-title h2,
+        .output-box-title h2 {
+            font-size: 18px;
+            margin-left: 10px; 
+        }
+        .lang-box-title h2::selection,
+        .output-box-title h2::selection,.lang-box-title > img::selection,
+        .output-box-title > img::selection{
+            background-color: transparent;
+        }
+        .lang-box-title > img,
+        .output-box-title > img {
+            width:25px;
+            margin-left: 20px;
+        }
+
+        .lang-box-textarea,.output-box-textarea {
+            width: 98%;
+            height: calc(100% - 40px);
+            margin: 0 .5%;
+            outline: none;
+            border: 0;
+            overflow: hidden;
+        }
+
+        .lang-box-textarea textarea {
+            width: calc(100% - 20px)    ;
+            height: calc(100% - 20px)   ;
+            padding:10px;
+            background-color: transparent;
+            resize: none;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 18px;
+
+        }
+        .lang-box-textarea textarea::-webkit-scrollbar{
+            width:5px;
+            height:100%;
+        }
+        .lang-box-textarea textarea::-webkit-scrollbar-track{
+            background-color: rgb(0, 0, 30);
+            border-radius: 50px;
+
+        }
+        .lang-box-textarea textarea::-webkit-scrollbar-thumb{
+            border-radius: 50px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="lang-box">
+            <div class="lang-box-title"> 
+                <img src="https://cdn-icons-png.flaticon.com/512/1051/1051277.png">
+                <h2>HTML</h2>
+            </div>
+            <div class="lang-box-textarea">
+                <textarea name="html" id="html-box" onkeyup="keypress()" spellcheck="false" autofocus></textarea>
+            </div>
+        </div>
+        <div class="lang-box">
+            <div class="lang-box-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png">
+                <h2>CSS</h2>
+            </div>
+            <div class="lang-box-textarea">
+                <textarea name="css" id="css-box" onkeyup="keypress()" spellcheck="false"></textarea>
+            </div>
+        </div>
+        <div class="lang-box">
+            <div class="lang-box-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png">
+                <h2>Java Script</h2>
+            </div>
+            <div class="lang-box-textarea">
+                <textarea name="java script" id="js-box" onkeyup="keypress()" spellcheck="false"></textarea>
+            </div>
+        </div>
+        <div class="output-box">
+            <div class="output-box-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/5690/5690573.png">
+                <h2>Output</h2>
+            </div>
+            <iframe class="output-box-textarea" id="output-box">
+
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        
+        function keypress(){
+            let htmlBox = document.getElementById("html-box").value;
+            let cssBox = document.getElementById("css-box").value;
+            let jsBox = document.getElementById("js-box").value;
+            let outputBox = document.getElementById("output-box");
+            outputBox.contentDocument.body.innerHTML = htmlBox + "<style>" + cssBox + "<style>"
+            outputBox.contentWindow.eval(jsBox)
+        }
+        let a = document.querySelector("button")
+        a.style.color = "blue"
+    </script>
+</body>
+
+</html>
